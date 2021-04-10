@@ -13,7 +13,7 @@
                     <a class="nav-link" href="#">Live Classes <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Packages</a>
+                    <a class="nav-link" href="{{ url('packages-details')}}">Packages</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">11+Exam</a>
@@ -60,7 +60,7 @@
                 </svg>
                 
                      
-{{--     
+{{-- 
                     <svg class="cart-svg-icon" width="22" height="22" fill="currentcolor" aria-hidden="true" role="img"><path d="M10.5 5.75V0H12v5.75h9.5l-3.818 12H4.318L.5 5.75h10zm-7.949 1.5l2.864 9h11.17l2.864-9H2.55h.001z"></path></svg>
                     <a href="{{ url('buy-now')}}"><img src="{{ asset('wa/assets/img/cart.svg')}}"></a>
                     <span class="cart_no">{{ count(session()->get('cart') ?? []) }}</span> --}}

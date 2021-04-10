@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batch;
+use App\Models\OrderItems;
+use App\Models\OrderPayment;
 use App\Models\Student;
 use Carbon\Carbon;
 // use GuzzleHttp\Psr7\Request;
@@ -100,9 +102,11 @@ class HomeController extends Controller
     }
     public function sessionList(Request $request)
     {
-        $batches = Batch::latest()->get();
-        $today = Batch::whereDate('batch_start_date', Carbon::today())->get();
-        $tomorrow = Batch::whereDate('batch_start_date', Carbon::tomorrow())->get();
+        $courses = OrderPayment::where('student_id', auth()->user()->id)->pluck('id');
+        $couseBatches = OrderItems::whereIn('order_payment_id', $courses)->pluck('batch_id');
+        $batches = Batch::whereIn('id', $couseBatches)->latest()->get();
+        $today = Batch::whereIn('id', $couseBatches)->whereDate('batch_start_date', Carbon::today())->get();
+        $tomorrow = Batch::whereIn('id', $couseBatches)->whereDate('batch_start_date', Carbon::tomorrow())->get();
         return view('dashboard.session-list', compact('batches', 'today', 'tomorrow'));
     }
 }

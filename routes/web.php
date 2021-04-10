@@ -87,6 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('destroy-classes/{id}', [BatchController::class, 'destroy'])->name('destroy-class');
     Route::get('student', [BatchController::class, 'student'])->name('student');
     Route::get('available-courses', [BatchController::class, 'availableCourses'])->name('available-courses');
+    // Route::get('/packages-details', [BatchController::class, 'packagesDetails'])->name('packages.details');
     
 
     Route::get('add-product', [TeacherController::class, 'store'])->name('add-product');
